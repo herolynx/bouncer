@@ -1,0 +1,4 @@
+Type: "AWS::ElasticBeanstalk::Application"
+Properties:
+  ApplicationName: user-management
+  Description: User management & auth
