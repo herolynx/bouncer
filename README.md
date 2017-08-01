@@ -35,3 +35,17 @@ Pre-requisites:
 ```
 ./run.sh
 ```
+
+## DevOps
+
+DevOps for following clouds/orchestration solution is prepared:
+
+* Kubernetes (`devops/kubernetes`)
+
+* AWS - Elastic Beanstalk (`devops/aws`)
+
+## Peformance tests
+
+Single performance tests can be done using `vegeta` tool.
+
+Check `perf` directory for more details.
