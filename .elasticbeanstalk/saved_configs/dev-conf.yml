@@ -1,0 +1,43 @@
+AWSConfigurationTemplateVersion: 1.1.0.0
+EnvironmentConfigurationMetadata:
+  DateCreated: '1501229353000'
+  DateModified: '1501572581069'
+  Description: Configuration created from the EB CLI using "eb config save".
+EnvironmentTier:
+  Name: WebServer
+  Type: Standard
+OptionSettings:
+  aws:autoscaling:asg:
+    Availability Zones: Any
+    Cooldown: '360'
+    Custom Availability Zones: ''
+    MaxSize: '4'
+    MinSize: '2'
+  aws:autoscaling:launchconfiguration:
+    EC2KeyName: aws-vl-eb
+    IamInstanceProfile: aws-elasticbeanstalk-ec2-role
+    InstanceType: t2.micro
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: true
+    RollingUpdateType: Health
+  aws:elasticbeanstalk:command:
+    BatchSize: '30'
+    BatchSizeType: Percentage
+  aws:elasticbeanstalk:environment:
+    LoadBalancerType: classic
+    ServiceRole: aws-elasticbeanstalk-service-role
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:elb:healthcheck:
+    HealthyThreshold: '3'
+    Interval: '10'
+    Target: HTTP:80/probe/health
+    Timeout: '5'
+    UnhealthyThreshold: '5'
+  aws:elb:loadbalancer:
+    CrossZone: true
+  aws:elb:policies:
+    ConnectionDrainingEnabled: true
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:eu-west-1::platform/Docker running on 64bit
+    Amazon Linux/2.6.0
