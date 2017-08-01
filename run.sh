@@ -1,4 +1,3 @@
 #!/bin/bash
 
-mvn spring-boot:run \
-      -Dspring.config.location=./application.yaml
+./gradlew bootRun -Dspring.config.location=./application.yaml

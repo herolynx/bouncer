@@ -19,7 +19,13 @@ mvn clean istall
 2) Build and push docker image
 
 ```
-mvn clean package docker:build -DpushImage -DpushImageTags -DdockerImageTags=<VERSION>
+./build_docker.sh
+```
+
+and then
+
+```
+./publish_docker.sh <version>
 ```
 
 ## Local development
