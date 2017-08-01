@@ -35,3 +35,15 @@ eb config put <file_name>
 ```
 eb config --cfg <cfg_name>
 ```
+
+##### Deployment
+
+1) Change current image in `Dockerrun.aws.json` file
+ 
+2) Push changes to git
+
+3) Deploy changed to Elastic Beanstalk
+
+```
+eb deploy
+```
