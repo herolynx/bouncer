@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfig {
 
     private String message;
+    private boolean healthy = true;
+    private boolean ready = true;
 
     public String getMessage() {
         return message;
