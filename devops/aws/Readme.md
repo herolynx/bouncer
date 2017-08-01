@@ -6,6 +6,18 @@ Pre-requisites:
 
 * [Deploying Elastic Beanstalk Applications from Docker Containers](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html)
 
+Scope:
+
+* config
+
+* deployments
+
+* health-checks
+
+* rolling updates
+
+* auto-scaling (based on latency)
+
 ## Commands
 
 ### Environment

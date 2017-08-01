@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: seed-user-management-backend-dev
+    environment: null
     group_suffix: null
 environment-defaults:
   seed-user-management-backend-dev:

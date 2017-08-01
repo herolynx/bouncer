@@ -4,6 +4,15 @@ Pre-requisites:
  
  * [minikube](https://github.com/kubernetes/minikube)
  
+Scope:
+
+* config
+
+* deployments
+
+* health & readiness probes
+
+* rolling updates
 
 ## Usage
 
