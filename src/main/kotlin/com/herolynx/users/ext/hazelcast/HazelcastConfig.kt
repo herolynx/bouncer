@@ -6,6 +6,7 @@ import com.hazelcast.config.NetworkConfig
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.core.HazelcastInstance
 import com.herolynx.users.services.db.DataService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.hazelcast.HazelcastKeyValueAdapter
@@ -15,16 +16,15 @@ import org.springframework.data.keyvalue.core.KeyValueTemplate
 @Configuration
 class HazelcastConfig {
 
-    private fun hazelcastConfig(): ClientConfig {
-        val clientConfig = ClientConfig()
-        clientConfig.networkConfig.addAddress("192.168.99.100:31611")
-        clientConfig.groupConfig.name = "herolynx"
-        clientConfig.groupConfig.password = "pass"
-        return clientConfig
+    private val settings: HazelcastSettings
+
+    @Autowired
+    constructor(settings: HazelcastSettings) {
+        this.settings = settings
     }
 
     @Bean
-    fun hazelcastInstance(): HazelcastInstance = HazelcastClient.newHazelcastClient(hazelcastConfig())
+    fun hazelcastInstance(): HazelcastInstance = HazelcastClient.newHazelcastClient(settings.hazelcastConfig())
 
     @Bean
     fun hazelcastKeyValueAdapter(instance: HazelcastInstance): HazelcastKeyValueAdapter = HazelcastKeyValueAdapter(instance)
