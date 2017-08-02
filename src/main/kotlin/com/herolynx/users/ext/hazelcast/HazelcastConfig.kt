@@ -27,7 +27,6 @@ class HazelcastConfig {
     }
 
     @Bean
-    @Scope(WebApplicationContext.SCOPE_REQUEST)
     fun hazelcastInstance(): HazelcastInstance = HazelcastClient.newHazelcastClient(settings.hazelcastConfig())
 
     @Bean
