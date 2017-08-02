@@ -1,10 +1,9 @@
 package com.herolynx.users.ext.hazelcast
 
-import com.hazelcast.client.HazelcastClient
 import com.hazelcast.client.config.ClientConfig
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.core.HazelcastInstance
-import com.herolynx.users.services.DataService
+import com.herolynx.users.services.db.DataService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.hazelcast.HazelcastKeyValueAdapter

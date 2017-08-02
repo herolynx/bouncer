@@ -1,6 +1,7 @@
-package com.herolynx.users.services
+package com.herolynx.users.services.web
 
 import com.herolynx.users.User
+import com.herolynx.users.services.db.DataService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

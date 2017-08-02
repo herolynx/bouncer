@@ -1,4 +1,4 @@
-package com.herolynx.users.services
+package com.herolynx.users.services.db
 
 import org.funktionale.tries.Try
 import java.io.Serializable

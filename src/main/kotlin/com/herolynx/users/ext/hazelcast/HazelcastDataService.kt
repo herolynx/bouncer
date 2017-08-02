@@ -1,6 +1,6 @@
 package com.herolynx.users.ext.hazelcast
 
-import com.herolynx.users.services.DataService
+import com.herolynx.users.services.db.DataService
 import org.funktionale.tries.Try
 import org.springframework.data.keyvalue.core.KeyValueOperations
 import java.io.Serializable
