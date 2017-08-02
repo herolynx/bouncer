@@ -7,8 +7,10 @@ import com.hazelcast.core.Hazelcast
 import com.hazelcast.core.HazelcastInstance
 import com.herolynx.users.services.db.DataService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Scope
 import org.springframework.data.hazelcast.HazelcastKeyValueAdapter
 import org.springframework.data.keyvalue.core.KeyValueOperations
 import org.springframework.data.keyvalue.core.KeyValueTemplate
@@ -24,6 +26,7 @@ class HazelcastConfig {
     }
 
     @Bean
+    @Scope(BeanDefinition.SCOPE_SINGLETON)
     fun hazelcastInstance(): HazelcastInstance = HazelcastClient.newHazelcastClient(settings.hazelcastConfig())
 
     @Bean

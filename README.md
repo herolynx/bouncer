@@ -74,7 +74,7 @@ For local development purposes **Hazelcast** has been used.
 
 In order to run it on locally you have to:
 
-1) Create hazelcast on **minikube* 
+1) Create hazelcast on **minikube**
 
 ```
 kubectl create -f ext/hazelcast
