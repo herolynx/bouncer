@@ -16,6 +16,7 @@ buildscript {
 
 apply {
     plugin("kotlin")
+    plugin("java")
     plugin("kotlin-spring")
     plugin("kotlin-jpa")
     plugin("org.springframework.boot")
@@ -33,11 +34,20 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    //kotlin & FP
     compile("org.jetbrains.kotlin:kotlin-stdlib")
     compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile("org.funktionale:funktionale-all:1.1")
+    //spring
+    compile("org.springframework.boot:spring-boot-starter-web")
     compile("com.fasterxml.jackson.module:jackson-module-kotlin")
+    //DevOps
     compile("io.fabric8:spring-cloud-starter-kubernetes:0.1.6")
+    //data access
+    compile("com.hazelcast:hazelcast-all:3.8.3")
+    compile("com.hazelcast:spring-data-hazelcast:1.0")
+
+    //tests
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 

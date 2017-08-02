@@ -1,6 +1,5 @@
 package com.herolynx.users
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RestController
@@ -8,29 +7,12 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
 @RestController
-class UsersService {
+class HealthService {
 
     private val id = UUID.randomUUID()
-    @Autowired
-    private var config: ServiceConfig? = null
-    @Autowired
-    private var dbConfig: DbConfig? = null
     private var healthy = true
     private var ready = true
 
-    @GetMapping("/hello")
-    fun ping(): String {
-        ready()
-        health()
-        return String.format("[%s] %s", id, config?.message)
-    }
-
-    @GetMapping("/secrets")
-    fun secrets(): String {
-        ready()
-        health()
-        return String.format("[%s] Can I tell you a secret? Username: %s, password: %s", id, dbConfig?.username, dbConfig?.password)
-    }
 
     @GetMapping("/probe/health")
     fun health(): Boolean {

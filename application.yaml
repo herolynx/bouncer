@@ -3,3 +3,5 @@ ping:
 db:
   username: None
   password: What?
+hazelcast:
+  url: http://192.168.99.100:31265/hazelcast/rest

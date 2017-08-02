@@ -1,10 +1,10 @@
-package com.herolynx.users
+package com.herolynx.users.services
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration
 
-@Configuration
-@ConfigurationProperties(prefix = "db")
+@org.springframework.context.annotation.Configuration
+@org.springframework.boot.context.properties.ConfigurationProperties(prefix = "db")
 class DbConfig {
 
     var username: String? = null
