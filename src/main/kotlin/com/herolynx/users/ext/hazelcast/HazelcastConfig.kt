@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Scope
 import org.springframework.data.hazelcast.HazelcastKeyValueAdapter
 import org.springframework.data.keyvalue.core.KeyValueOperations
 import org.springframework.data.keyvalue.core.KeyValueTemplate
-import org.springframework.web.context.WebApplicationContext
 
 @Configuration
 class HazelcastConfig {
@@ -27,6 +26,7 @@ class HazelcastConfig {
     }
 
     @Bean
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     fun hazelcastInstance(): HazelcastInstance = HazelcastClient.newHazelcastClient(settings.hazelcastConfig())
 
     @Bean
