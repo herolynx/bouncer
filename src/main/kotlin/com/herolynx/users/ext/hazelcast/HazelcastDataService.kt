@@ -1,25 +1,32 @@
 package com.herolynx.users.ext.hazelcast
 
-import com.herolynx.users.DataService
+import com.herolynx.users.services.DataService
 import org.funktionale.tries.Try
 import org.springframework.data.keyvalue.core.KeyValueOperations
+import java.io.Serializable
 
-class HazelcastDataService<T> : DataService<T>  {
+internal class HazelcastDataService<T> : DataService<T> {
 
-    private val template: KeyValueOperations
+    private val ops: KeyValueOperations
 
     constructor(template: KeyValueOperations) {
-        this.template = template
+        this.ops = template
     }
 
-    override fun save(t: T): Try<T> = Try { template.insert(t) }
-
-    override fun delete(t: T): Try<T> {
-
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun <K : Serializable> create(key: K, t: T): Try<K> = Try {
+        ops.insert(key, t)
+        key
     }
 
-    override fun findAll(type: Class<T>): Try<List<T>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun <K : Serializable> update(key: K, t: T): Try<K> = Try {
+        ops.update(key, t)
+        key
     }
+
+    override fun <K : Serializable> delete(key: K, type: Class<T>): Try<K> = Try {
+        ops.delete(key, type)
+        key
+    }
+
+    override fun findAll(type: Class<T>): Try<List<T>> = Try { ops.findAll(type).toList() }
 }
