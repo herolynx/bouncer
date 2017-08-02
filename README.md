@@ -28,18 +28,16 @@ and then
 ./publish_docker.sh <version>
 ```
 
-## Local development
+## DB
 
-Pre-requisites:
+For **demo** purposes **Hazelcast** has been used since it allows to create cluster thus it will be deployed in **Kubernetes**.
 
-    * [minikube](https://github.com/kubernetes/minikube)
-    * Maven
-    * Java 8
+Remember that it's **not persisent** storage.
 
-1) Run locally
+In order to deploy it run:
 
 ```
-./run.sh
+kubectl create -f ext/hazelcast
 ```
 
 ## DevOps
@@ -55,3 +53,37 @@ DevOps for following clouds/orchestration solution is prepared:
 Simple performance tests can be done using `vegeta` tool.
 
 Check `perf` directory for more details.
+
+## Local development
+
+Pre-requisites:
+
+    * [minikube](https://github.com/kubernetes/minikube)
+    * Maven
+    * Java 8
+
+1) Run locally
+
+```
+./run.sh
+```
+
+##### Hazelcast
+
+For local development purposes **Hazelcast** has been used.
+
+In order to run it on locally you have to:
+
+1) Create hazelcast on **minikube* 
+
+```
+kubectl create -f ext/hazelcast
+```
+
+2) Check IP and port of your service
+
+```
+minikube service hazelcast --url
+```
+
+3) Put given IP and port to your `application.yaml` property file.

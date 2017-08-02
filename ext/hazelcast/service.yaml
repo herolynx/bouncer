@@ -7,6 +7,9 @@ metadata:
 spec: 
   ports:
     - port: 5701
+      protocol: TCP
+      targetPort: 5701
+      name : http
   selector: 
     name: hazelcast
   type: LoadBalancer
