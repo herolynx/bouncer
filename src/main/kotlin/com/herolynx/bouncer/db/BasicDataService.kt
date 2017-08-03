@@ -4,7 +4,7 @@ import org.funktionale.tries.Try
 import org.springframework.data.keyvalue.core.KeyValueOperations
 import java.io.Serializable
 
-internal class BasicDataService<T> : DataService<T> {
+class BasicDataService<T> : DataService<T> {
 
     private val ops: KeyValueOperations
 
