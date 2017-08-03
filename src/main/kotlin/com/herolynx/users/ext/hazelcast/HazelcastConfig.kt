@@ -1,11 +1,9 @@
 package com.herolynx.users.ext.hazelcast
 
 import com.hazelcast.client.HazelcastClient
-import com.hazelcast.client.config.ClientConfig
-import com.hazelcast.config.NetworkConfig
-import com.hazelcast.core.Hazelcast
 import com.hazelcast.core.HazelcastInstance
 import com.herolynx.users.services.db.DataService
+import com.herolynx.users.services.db.BasicDataService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.annotation.Bean
@@ -36,6 +34,6 @@ class HazelcastConfig {
     fun keyValueTemplate(adapter: HazelcastKeyValueAdapter): KeyValueOperations = KeyValueTemplate(adapter)
 
     @Bean
-    fun <T> hazelcastDataService(ops: KeyValueOperations): DataService<T> = HazelcastDataService(ops)
+    fun <T> hazelcastDataService(ops: KeyValueOperations): DataService<T> = BasicDataService(ops)
 
 }

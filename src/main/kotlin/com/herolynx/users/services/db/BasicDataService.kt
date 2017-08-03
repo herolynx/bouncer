@@ -1,11 +1,10 @@
-package com.herolynx.users.ext.hazelcast
+package com.herolynx.users.services.db
 
-import com.herolynx.users.services.db.DataService
 import org.funktionale.tries.Try
 import org.springframework.data.keyvalue.core.KeyValueOperations
 import java.io.Serializable
 
-internal class HazelcastDataService<T> : DataService<T> {
+internal class BasicDataService<T> : DataService<T> {
 
     private val ops: KeyValueOperations
 
