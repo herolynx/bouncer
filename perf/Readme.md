@@ -10,19 +10,27 @@ Pre-requisites:
 
 ```
 vegeta attack \
-    -targets=get_hello.txt \
-    -duration=300s \
+    -targets=get_users.txt \
+    -duration=30s \
     -rate=1200 \
     -timeout=60s \
     -insecure \
-    > output/report_get_hello.bin
+    > output/report_get_users.bin
 ```
 
 2) Produce report
 
 ```
 vegeta report \
-    -inputs=output/report_get_hello.bin \
+    -inputs=output/report_get_users.bin \
     -reporter=plot \
-    > output/plot_get_hello.html
+    > output/plot_get_users.html
+```
+
+or in text form:
+
+```
+vegeta report \
+    -inputs=output/report_get_users.bin \
+    -reporter=text 
 ```

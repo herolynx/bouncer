@@ -3,6 +3,7 @@ package com.herolynx.bouncer.ext.hazelcast
 import com.hazelcast.client.HazelcastClient
 import com.herolynx.bouncer.db.DataService
 import com.herolynx.bouncer.db.BasicDataService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.BeanDefinition
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,13 +15,13 @@ class HazelcastConfig {
 
     private val settings: HazelcastSettings
 
-    @org.springframework.beans.factory.annotation.Autowired
+    @Autowired
     constructor(settings: HazelcastSettings) {
         this.settings = settings
     }
 
     @Bean
-    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    @Scope(BeanDefinition.SCOPE_SINGLETON)
     fun hazelcastInstance(): com.hazelcast.core.HazelcastInstance = HazelcastClient.newHazelcastClient(settings.hazelcastConfig())
 
     @Bean
