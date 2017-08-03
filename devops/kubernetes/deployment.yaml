@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: user-management
+  name: bouncer
 spec:
   revisionHistoryLimit: 1
   replicas: 2
   template:
     metadata:
       labels:
-        app: user-management
+        app: bouncer
     spec:
       containers:
       - name: k8s-java-sample
-        image: mwrona/seed-user-management:0.0.4
+        image: mwrona/bouncer:0.0.1
         imagePullPolicy: IfNotPresent
         env:
           - name: CONFIG

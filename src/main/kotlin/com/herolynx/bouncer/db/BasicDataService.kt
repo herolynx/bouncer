@@ -1,4 +1,4 @@
-package com.herolynx.users.services.db
+package com.herolynx.bouncer.db
 
 import org.funktionale.tries.Try
 import org.springframework.data.keyvalue.core.KeyValueOperations

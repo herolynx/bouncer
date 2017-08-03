@@ -1,6 +1,16 @@
-# seed-user-management-backend
+# bouncer
 
-Seed of micro-service for user management
+Micro-service for user management & auth.
+
+Use cases:
+
+    * use registration
+    
+    * e-mail sending for verification purposes
+    
+    * profile edition
+    
+    * auth with JWT support
 
 ## Build
 
@@ -19,13 +29,13 @@ mvn clean istall
 2) Build and push docker image
 
 ```
-./build_docker.sh
+./docker_build.sh
 ```
 
 and then
 
 ```
-./publish_docker.sh <version>
+./docker_publish.sh <version>
 ```
 
 ## DB
@@ -44,9 +54,9 @@ kubectl create -f ext/hazelcast
 
 DevOps for following clouds/orchestration solution is prepared:
 
-* Kubernetes (`devops/kubernetes`)
-
-* AWS - Elastic Beanstalk (`devops/aws`)
+    * Kubernetes (`devops/kubernetes`)
+    
+    * AWS - Elastic Beanstalk (`devops/aws`)
 
 ## Peformance tests
 
@@ -59,7 +69,9 @@ Check `perf` directory for more details.
 Pre-requisites:
 
     * [minikube](https://github.com/kubernetes/minikube)
+       
     * Maven
+        
     * Java 8
 
 1) Run locally

@@ -1,6 +1,5 @@
-package com.herolynx.users.ext.hazelcast
+package com.herolynx.bouncer.ext.hazelcast
 
-import com.hazelcast.client.config.ClientConfig
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration
 
@@ -16,8 +15,8 @@ class HazelcastSettings {
     var user: String? = null
     var pass: String? = null
 
-    fun hazelcastConfig(): ClientConfig {
-        val clientConfig = ClientConfig()
+    fun hazelcastConfig(): com.hazelcast.client.config.ClientConfig {
+        val clientConfig = com.hazelcast.client.config.ClientConfig()
         clientConfig.networkConfig
                 .addAddress("$ip:$port")
                 .setConnectionAttemptLimit(attemptLimit)

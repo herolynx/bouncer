@@ -7,5 +7,5 @@ if [ -z "${VERSION}" ]; then
     exit 1
 fi
 
-docker tag seed-user-management-backend:${VERSION} mwrona/seed-user-management:${VERSION}
-docker push mwrona/seed-user-management:${VERSION}
+docker tag bouncer:${VERSION} mwrona/bouncer:${VERSION}
+docker push mwrona/bouncer:${VERSION}

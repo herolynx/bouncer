@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-management
+  name: bouncer
 spec:
   ports:
   - port: 80

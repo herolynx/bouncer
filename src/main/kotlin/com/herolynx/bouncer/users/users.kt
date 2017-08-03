@@ -1,4 +1,4 @@
-package com.herolynx.users
+package com.herolynx.bouncer.users
 
 import java.io.Serializable
 

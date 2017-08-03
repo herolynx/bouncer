@@ -1,4 +1,4 @@
-package com.herolynx.users
+package com.herolynx.bouncer
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
