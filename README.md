@@ -97,11 +97,13 @@ Pre-requisites:
     
     * Running SQL DB (see DB section)
 
-1) Run DB proxy
+1) Check URL of CockroachDB
 
 ```
-./db_proxy.sh
+minikube service cockroachdb-public --url
 ```
+
+and apply it to `application.yaml` config file.
 
 2) Run locally
 

@@ -1,11 +1,6 @@
 package com.herolynx.bouncer.monitoring
 
-import java.util.logging.Logger
-
-private fun <T> tag(t: T): String {
-    val o = t as Any
-    return o.javaClass.simpleName
-}
+import org.apache.log4j.Logger;
 
 private fun <T> logger(t: T): Logger {
     val o = t as Any
@@ -38,5 +33,5 @@ fun <T, E : Throwable> T.warn(msg: String, t: E?) {
 
 
 fun <T, E : Throwable> T.warn(msg: String) {
-    logger(this).warning(msg)
+    logger(this).warn(msg)
 }
