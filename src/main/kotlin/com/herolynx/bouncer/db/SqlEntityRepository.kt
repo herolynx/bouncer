@@ -59,28 +59,10 @@ internal class SqlEntityRepository<T> : Repository<T> {
                 .onFailure({ ex -> error("Couldn't load entity - class: $clazz, id: $id", ex) })
     }
 
-    override fun list(query: () -> Expression<T>): Try<List<T>> = execute { em ->
+    override fun <R> query(query: (JPAQuery<T>) -> R): Try<R> = execute { em ->
         Try {
-            JPAQuery<T>(em)
-                    .select(query())
-                    .fetch()
+            query(JPAQuery<T>(em))
         }
     }
 
-    override fun findOne(query: () -> Expression<T>): Try<Option<T>> = execute { em ->
-        Try {
-            JPAQuery<T>(em)
-                    .select(query())
-                    .fetchOne()
-                    .toOption()
-        }
-    }
-
-    override fun count(query: () -> Expression<T>): Try<Long> = execute { em ->
-        Try {
-            JPAQuery<T>(em)
-                    .select(query())
-                    .fetchCount()
-        }
-    }
 }

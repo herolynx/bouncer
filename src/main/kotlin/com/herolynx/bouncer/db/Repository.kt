@@ -13,10 +13,6 @@ interface Repository<T> {
 
     fun <Id> find(clazz: Class<T>, id: Id): Try<Option<T>>
 
-    fun count(query: () -> Expression<T>): Try<Long>
-
-    fun list(query: () -> Expression<T>): Try<List<T>>
-
-    fun findOne(query: () -> Expression<T>): Try<Option<T>>
+    fun <R> query(query: (JPAQuery<T>) -> R): Try<R>
 
 }

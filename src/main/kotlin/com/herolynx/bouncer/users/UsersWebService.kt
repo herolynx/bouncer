@@ -1,6 +1,7 @@
 package com.herolynx.bouncer.users
 
 import com.herolynx.bouncer.db.Repository
+import com.herolynx.bouncer.monitoring.error
 import org.funktionale.option.getOrElse
 import org.funktionale.tries.Try
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,9 +30,12 @@ class UsersWebService {
 
     @GetMapping
     fun getUsers(): List<UserInfo> {
-//        usersRepo.list { QUserInfo. }
-        return usersRepo.find(UserInfo::class.java, "wrona")
-                .map { u -> u.map { w -> listOf(w) }.getOrElse { listOf() } }
+        return usersRepo.query { q ->
+            q.select(QUserInfo.userInfo)
+                    .from(QUserInfo.userInfo)
+                    .fetch()
+        }
+                .onFailure { ex -> error("Couldn't get users", ex) }
                 .getOrElse { listOf() }
     }
 
