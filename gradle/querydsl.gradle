@@ -1,4 +1,6 @@
 apply plugin: "com.ewerk.gradle.plugins.querydsl"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'idea'
 
 sourceSets {
     main {
@@ -16,10 +18,19 @@ querydsl {
 
 dependencies {
     compile "com.querydsl:querydsl-jpa:${querydsl_version}"
+    kapt "com.querydsl:querydsl-apt:$querydsl_version:jpa"
     compileOnly "com.querydsl:querydsl-apt:${querydsl_version}"
 }
 
-compileJava {
-    options.compilerArgs << "-s"
-    options.compilerArgs << "$buildDir/generated/source/apt/main"
+//compileJava {
+//    options.compilerArgs << "-s"
+//    options.compilerArgs << "$buildDir/generated/source/apt/main"
+//}
+
+idea {
+    module {
+        def kaptMain = file('build/generated/source/kapt/main')
+        sourceDirs += kaptMain
+        generatedSourceDirs += kaptMain
+    }
 }
