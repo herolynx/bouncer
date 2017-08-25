@@ -1,0 +1,25 @@
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
+
+sourceSets {
+    main {
+        java {
+            srcDir "$buildDir/generated/source/apt/main"
+        }
+    }
+}
+
+querydsl {
+    jpa = true
+    querydslDefault = true
+    querydslSourcesDir = "$buildDir/generated/source/apt/main"
+}
+
+dependencies {
+    compile "com.querydsl:querydsl-jpa:${querydsl_version}"
+    compileOnly "com.querydsl:querydsl-apt:${querydsl_version}"
+}
+
+compileJava {
+    options.compilerArgs << "-s"
+    options.compilerArgs << "$buildDir/generated/source/apt/main"
+}

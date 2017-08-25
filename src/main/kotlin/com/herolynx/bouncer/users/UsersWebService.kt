@@ -29,6 +29,7 @@ class UsersWebService {
 
     @GetMapping
     fun getUsers(): List<UserInfo> {
+//        usersRepo.list { QUserInfo. }
         return usersRepo.find(UserInfo::class.java, "wrona")
                 .map { u -> u.map { w -> listOf(w) }.getOrElse { listOf() } }
                 .getOrElse { listOf() }

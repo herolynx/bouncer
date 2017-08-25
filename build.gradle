@@ -26,8 +26,9 @@ apply {
     plugin("org.springframework.boot")
     plugin("application")
     plugin("docker")
-    plugin("com.ewerk.gradle.plugins.querydsl")
 }
+
+apply from: 'gradle/querydsl.gradle'
 
 applicationName = "bouncer"
 version = "0.0.1"
@@ -60,11 +61,17 @@ dependencies {
     compile("org.hibernate:hibernate-core:5.2.10.Final")
     compile("org.hibernate:hibernate-entitymanager:5.2.10.Final")
     compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final")
-    compile("com.querydsl:querydsl-jpa:4.1.4")
-    compile("com.querydsl:querydsl-apt:4.1.4")
 
     //tests
     testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+sourceSets {
+    generated {
+        java {
+            srcDir "$projectDir/generated/java"
+        }
+    }
 }
 
 docker {
