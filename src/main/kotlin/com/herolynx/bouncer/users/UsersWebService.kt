@@ -2,6 +2,7 @@ package com.herolynx.bouncer.users
 
 import com.herolynx.bouncer.db.Repository
 import org.funktionale.option.getOrElse
+import org.funktionale.tries.Try
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

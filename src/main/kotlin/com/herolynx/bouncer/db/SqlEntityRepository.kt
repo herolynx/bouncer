@@ -1,6 +1,8 @@
 package com.herolynx.bouncer.db
 
 import com.herolynx.bouncer.monitoring.error
+import com.querydsl.core.types.Expression
+import com.querydsl.jpa.impl.JPAQuery
 import org.funktionale.option.Option
 import org.funktionale.option.toOption
 import javax.persistence.EntityManagerFactory
@@ -57,4 +59,28 @@ internal class SqlEntityRepository<T> : Repository<T> {
                 .onFailure({ ex -> error("Couldn't load entity - class: $clazz, id: $id", ex) })
     }
 
+    override fun list(query: () -> Expression<T>): Try<List<T>> = execute { em ->
+        Try {
+            JPAQuery<T>(em)
+                    .select(query())
+                    .fetch()
+        }
+    }
+
+    override fun findOne(query: () -> Expression<T>): Try<Option<T>> = execute { em ->
+        Try {
+            JPAQuery<T>(em)
+                    .select(query())
+                    .fetchOne()
+                    .toOption()
+        }
+    }
+
+    override fun count(query: () -> Expression<T>): Try<Long> = execute { em ->
+        Try {
+            JPAQuery<T>(em)
+                    .select(query())
+                    .fetchCount()
+        }
+    }
 }
