@@ -2,8 +2,6 @@ package com.herolynx.bouncer.users
 
 import com.herolynx.bouncer.db.Repository
 import com.herolynx.bouncer.monitoring.error
-import org.funktionale.option.getOrElse
-import org.funktionale.tries.Try
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import java.util.*

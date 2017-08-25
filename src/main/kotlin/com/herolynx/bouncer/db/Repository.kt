@@ -1,6 +1,5 @@
 package com.herolynx.bouncer.db
 
-import com.querydsl.core.types.Expression
 import com.querydsl.jpa.impl.JPAQuery
 import org.funktionale.option.Option
 import org.funktionale.tries.Try
