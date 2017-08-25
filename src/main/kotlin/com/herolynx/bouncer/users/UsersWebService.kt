@@ -13,22 +13,22 @@ import java.util.*
 @RequestMapping(value = "/users")
 class UsersWebService {
 
-    private val usersRepo: Repository<User>
+    private val usersRepo: Repository<UserInfo>
 
     @Autowired
-    constructor(usersRepo: Repository<User>) {
+    constructor(usersRepo: Repository<UserInfo>) {
         this.usersRepo = usersRepo
     }
 
     @PostMapping
-    fun createUser(): User? {
-        val u = User(firstName = "mike", lastName = "wrona", eMail = UUID.randomUUID().toString())
+    fun createUser(): UserInfo? {
+        val u = UserInfo(firstName = "mike", lastName = "wrona", eMail = UUID.randomUUID().toString())
         return usersRepo.save(u).get()
     }
 
     @GetMapping
-    fun getUsers(): List<User> {
-        return usersRepo.find(User::class.java, "wrona")
+    fun getUsers(): List<UserInfo> {
+        return usersRepo.find(UserInfo::class.java, "wrona")
                 .map { u -> u.map { w -> listOf(w) }.getOrElse { listOf() } }
                 .getOrElse { listOf() }
     }

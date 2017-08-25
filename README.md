@@ -96,6 +96,8 @@ Pre-requisites:
     * Java 8
     
     * Running SQL DB (see DB section)
+    
+    * Created DB `bouncer` and access to granted to your user
 
 1) Check URL of CockroachDB
 

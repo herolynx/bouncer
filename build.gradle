@@ -51,7 +51,7 @@ dependencies {
 
     //data access
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("postgresql:postgresql:9.2-1002.jdbc4")
+    compile("postgresql:postgresql:9.4.1208-jdbc42-atlassian-hosted")
     compile("org.hibernate:hibernate-core:5.2.10.Final")
     compile("org.hibernate:hibernate-entitymanager:5.2.10.Final")
     compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final")
