@@ -1,6 +1,5 @@
 package com.herolynx.bouncer.users
 
-import java.util.*
 import javax.persistence.*
 
 typealias EMail = String

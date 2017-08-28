@@ -1,9 +1,8 @@
-package com.herolynx.bouncer.db
+package com.herolynx.bouncer.users
 
-import com.herolynx.bouncer.test.sql.InMemoryDbTest
+import com.herolynx.bouncer.db.RepositoryFactory
+import com.herolynx.bouncer.test.sql.DataAccessTest
 import com.herolynx.bouncer.test.sql.InMemorySqlDbConfig
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
@@ -16,25 +15,18 @@ import javax.sql.DataSource
 @ContextConfiguration(classes = arrayOf(
         InMemorySqlDbConfig::class
 ))
-class TransactionIntegrationTest :  InMemoryDbTest {
+class UserInfoDataAccessTest : DataAccessTest<UserInfo> {
 
     @Autowired
     override var dataSource: DataSource? = null
+    @Autowired
+    override var repoFactory: RepositoryFactory? = null
 
-    @Before
-    fun setUp() {
-        cleanDb()
-    }
+    override fun entityClass(): Class<UserInfo> = UserInfo::class.java
 
-    @Test
-    fun shouldTest1() {
+    override fun idOf(t: UserInfo): Any = t.eMail
 
-    }
+    override fun v1(): UserInfo = UserInfo(firstName = "Johny", lastName = "Bravo", eMail = "johny@bravo.com")
 
-    @Test
-    fun shouldTest2() {
-
-    }
-
-
+    override fun v2(v1: UserInfo): UserInfo = v1.copy(firstName = "Johnny")
 }
