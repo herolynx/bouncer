@@ -32,18 +32,14 @@ class UsersWebService {
             @RequestParam(required = false, defaultValue = "0") offset: Long = 0,
             @RequestParam(required = false, defaultValue = "50") limit: Long = 50
 
-    ): List<UserInfo> {
-        return repoFactory.execute { r ->
-            r.query { q ->
-                q.select(QUserInfo.userInfo)
-                        .from(QUserInfo.userInfo)
-                        .offset(offset)
-                        .limit(limit)
-                        .fetch()
-            }
-                    .onFailure { ex -> error("Couldn't get users", ex) }
-                    .getOrElse { listOf() }
-        }
+    ): List<UserInfo> = repoFactory.repository().query { q ->
+        q.select(QUserInfo.userInfo)
+                .from(QUserInfo.userInfo)
+                .offset(offset)
+                .limit(limit)
+                .fetch()
     }
+            .onFailure { ex -> error("Couldn't get users", ex) }
+            .getOrElse { listOf() }
 
 }

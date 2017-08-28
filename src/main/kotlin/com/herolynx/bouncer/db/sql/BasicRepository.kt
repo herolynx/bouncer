@@ -37,7 +37,4 @@ internal open class BasicReadRepository : ReadRepository {
         query(JPAQuery<Any>(em))
     }
 
-    override fun close() {
-        em.close()
-    }
 }

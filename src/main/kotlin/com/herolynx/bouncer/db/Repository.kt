@@ -8,15 +8,6 @@ interface RepositoryFactory {
 
     /**
      * Get basic repository.
-     * Note: all resources will be closed automatically.
-     *
-     * @param operation operation to be performed on repository
-     * @return result of operation
-     */
-    fun <T> execute(operation: (ReadRepository) -> T): T = repository().use { r -> operation(r) }
-
-    /**
-     * Get basic repository.
      * Note: it has be closed manually after usage.
      *
      * @return new instance
@@ -35,7 +26,7 @@ interface RepositoryFactory {
 }
 
 
-interface ReadRepository : AutoCloseable {
+interface ReadRepository {
 
     fun <T, Id> find(clazz: Class<T>, id: Id): Try<Option<T>>
 
