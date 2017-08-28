@@ -1,6 +1,5 @@
 package com.herolynx.bouncer.users
 
-import com.herolynx.bouncer.db.ReadRepository
 import com.herolynx.bouncer.db.RepositoryFactory
 import com.herolynx.bouncer.monitoring.error
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +16,6 @@ class UsersWebService {
     constructor(repoFactory: RepositoryFactory) {
         this.repoFactory = repoFactory
     }
-
 
     @PostMapping
     fun createUser(): UserInfo? {
