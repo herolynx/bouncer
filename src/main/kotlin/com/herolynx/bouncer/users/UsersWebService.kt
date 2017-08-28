@@ -24,7 +24,9 @@ class UsersWebService {
         val u = UserInfo(firstName = "mike", lastName = "wrona", eMail = UUID.randomUUID().toString())
         return repoFactory.transactional { r ->
             r.save(u).get()
-        }.get()
+        }
+                .onFailure { ex -> error("Couldn't save user", ex) }
+                .get()
     }
 
     @GetMapping
