@@ -14,10 +14,10 @@ class SqlRepositoryFactory : RepositoryFactory {
     private val em: EntityManager
     private val repo: BasicWriteRepository
 
-    private fun <R> transaction(operation: (EntityManager) -> R): Try<R> {
+    private fun <R> transaction(operation: () -> R): Try<R> {
         val t = tm.getTransaction(DefaultTransactionDefinition())
         try {
-            val r = operation(em)
+            val r = operation()
             tm.commit(t)
             return Try.Success(r)
         } catch (e: Exception) {
@@ -26,7 +26,7 @@ class SqlRepositoryFactory : RepositoryFactory {
         }
     }
 
-    override fun <T> transactional(operation: (WriteRepository) -> T): Try<T> = transaction { em -> operation(repo) }
+    override fun <T> transactional(operation: (WriteRepository) -> T): Try<T> = transaction { operation(repo) }
 
     override fun repository(): ReadRepository = repo
 
