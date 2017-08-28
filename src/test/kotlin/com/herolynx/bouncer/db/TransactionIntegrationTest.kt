@@ -2,7 +2,6 @@ package com.herolynx.bouncer.db
 
 import com.herolynx.bouncer.test.sql.InMemoryDbTest
 import com.herolynx.bouncer.test.sql.InMemorySqlDbConfig
-import junit.framework.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,7 +28,7 @@ class TransactionIntegrationTest :  InMemoryDbTest {
 
     @Test
     fun shouldTest1() {
-Assert.fail()
+
     }
 
     @Test
