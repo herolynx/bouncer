@@ -18,4 +18,8 @@ class JdbcConfig {
     @Bean
     fun repositoryFactory(tm: PlatformTransactionManager, em: EntityManager): RepositoryFactory = SqlRepositoryFactory(tm, em)
 
+    companion object {
+        val BASE_PACKAGE = "com.herolynx.bouncer"
+    }
+
 }
