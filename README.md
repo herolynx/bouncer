@@ -17,13 +17,7 @@ Use cases:
 1) Build project
 
 ```
-mvn clean build
-```
-
-or
-
-```
-mvn clean istall
+./build.sh
 ```
 
 2) Build and push docker image
