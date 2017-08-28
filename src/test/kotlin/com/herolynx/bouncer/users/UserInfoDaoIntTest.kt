@@ -1,7 +1,7 @@
 package com.herolynx.bouncer.users
 
 import com.herolynx.bouncer.db.RepositoryFactory
-import com.herolynx.bouncer.test.sql.DataAccessTest
+import com.herolynx.bouncer.test.sql.DaoTest
 import com.herolynx.bouncer.test.sql.InMemorySqlDbConfig
 import org.hamcrest.Matchers
 import org.junit.Assert
@@ -18,7 +18,7 @@ import javax.sql.DataSource
 @ContextConfiguration(classes = arrayOf(
         InMemorySqlDbConfig::class
 ))
-class UserInfoDataAccessTest : DataAccessTest<UserInfo> {
+class UserInfoDaoIntTest : DaoTest<UserInfo> {
 
     @Autowired
     override var dataSource: DataSource? = null

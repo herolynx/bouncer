@@ -7,7 +7,7 @@ import org.junit.Before
 import org.junit.Test
 import javax.sql.DataSource
 
-interface DataAccessTest<T> : InMemoryDbTest {
+interface DaoTest<T> : InMemoryDbTest {
 
     override var dataSource: DataSource?
     var repoFactory: RepositoryFactory?
