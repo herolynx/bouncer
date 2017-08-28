@@ -5,6 +5,7 @@ import com.herolynx.bouncer.db.RepositoryFactory
 import org.springframework.context.annotation.Configuration
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.Bean
+import org.springframework.transaction.PlatformTransactionManager
 import javax.persistence.EntityManager
 
 @Configuration
@@ -15,6 +16,6 @@ class JdbcConfig {
     fun repository(em: EntityManager): ReadRepository = BasicReadRepository(em)
 
     @Bean
-    fun repositoryFactory(em: EntityManager): RepositoryFactory = SqlRepositoryFactory(em)
+    fun repositoryFactory(tm: PlatformTransactionManager, em: EntityManager): RepositoryFactory = SqlRepositoryFactory(tm, em)
 
 }

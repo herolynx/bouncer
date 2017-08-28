@@ -4,21 +4,24 @@ import com.herolynx.bouncer.db.ReadRepository
 import com.herolynx.bouncer.db.RepositoryFactory
 import com.herolynx.bouncer.db.WriteRepository
 import org.funktionale.tries.Try
+import org.springframework.transaction.PlatformTransactionManager
+import org.springframework.transaction.support.DefaultTransactionDefinition
 import javax.persistence.EntityManager
 
 class SqlRepositoryFactory : RepositoryFactory {
 
+    private val tm: PlatformTransactionManager
     private val em: EntityManager
     private val repo: BasicWriteRepository
 
     private fun <R> transaction(operation: (EntityManager) -> R): Try<R> {
+        val t = tm.getTransaction(DefaultTransactionDefinition())
         try {
-            em.transaction.begin()
             val r = operation(em)
-            em.transaction.commit()
+            tm.commit(t)
             return Try.Success(r)
         } catch (e: Exception) {
-            em.transaction.rollback()
+            tm.rollback(t)
             return Try.Failure(e)
         }
     }
@@ -27,7 +30,8 @@ class SqlRepositoryFactory : RepositoryFactory {
 
     override fun repository(): ReadRepository = repo
 
-    constructor(em: EntityManager) {
+    constructor(tm: PlatformTransactionManager, em: EntityManager) {
+        this.tm = tm
         this.em = em
         repo = BasicWriteRepository(em)
     }
