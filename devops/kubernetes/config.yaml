@@ -4,6 +4,24 @@ metadata:
   name: bouncer
   namespace: default
 data:
-  application.properties: |
-    spring.cloud.kubernetes.secrets.paths=/etc/secrets/postgres-secrets
-    ping.message: Greetings K8s fans!
+  application.yaml: |
+    spring:
+      datasource:
+        url: jdbc:postgresql://cockroachdb:26257/bouncer?sslmode=disable
+        username: root
+        password: ""
+        driver-class-name: org.postgresql.Driver
+        testWhileIdle: true
+        validationQuery: SELECT 1
+        test-on-borrow: true
+        max-wait: 10000
+        max-active: 50
+      jpa:
+        generate-ddl: true
+        show-sql: false
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        hibenrate:
+          ddl-auto: update
+
