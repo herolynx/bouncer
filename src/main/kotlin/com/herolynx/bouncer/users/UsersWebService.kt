@@ -33,7 +33,7 @@ class UsersWebService {
             @RequestParam(required = false, defaultValue = "50") limit: Long = 50
 
     ): List<UserInfo> {
-        return repoFactory.use { r ->
+        return repoFactory.execute { r ->
             r.query { q ->
                 q.select(QUserInfo.userInfo)
                         .from(QUserInfo.userInfo)

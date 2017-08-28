@@ -11,14 +11,7 @@ interface RepositoryFactory {
      * Note: all resources will be closed automatically.
      * @return new instance
      */
-    fun <T> use(operation: (ReadRepository) -> T): T {
-        val r = repository()
-        try {
-            return operation(r)
-        } finally {
-            r.close()
-        }
-    }
+    fun <T> execute(operation: (ReadRepository) -> T): T = repository().use { r -> operation(r) }
 
     /**
      * Get basic repository.
