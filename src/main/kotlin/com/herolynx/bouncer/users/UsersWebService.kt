@@ -1,6 +1,7 @@
 package com.herolynx.bouncer.users
 
-import com.herolynx.bouncer.db.Repository
+import com.herolynx.bouncer.db.ReadRepository
+import com.herolynx.bouncer.db.RepositoryFactory
 import com.herolynx.bouncer.monitoring.error
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -10,17 +11,20 @@ import java.util.*
 @RequestMapping(value = "/users")
 class UsersWebService {
 
-    private val usersRepo: Repository<UserInfo>
+    private val repoFactory: RepositoryFactory
 
     @Autowired
-    constructor(usersRepo: Repository<UserInfo>) {
-        this.usersRepo = usersRepo
+    constructor(repoFactory: RepositoryFactory) {
+        this.repoFactory = repoFactory
     }
+
 
     @PostMapping
     fun createUser(): UserInfo? {
         val u = UserInfo(firstName = "mike", lastName = "wrona", eMail = UUID.randomUUID().toString())
-        return usersRepo.save(u).get()
+        return repoFactory.transactional { r ->
+            r.save(u).get()
+        }.get()
     }
 
     @GetMapping
@@ -29,16 +33,17 @@ class UsersWebService {
             @RequestParam(required = false, defaultValue = "50") limit: Long = 50
 
     ): List<UserInfo> {
-        return usersRepo.query { q ->
-            q.select(QUserInfo.userInfo)
-                    .from(QUserInfo.userInfo)
-                    .offset(offset)
-                    .limit(limit)
-                    .fetch()
+        return repoFactory.use { r ->
+            r.query { q ->
+                q.select(QUserInfo.userInfo)
+                        .from(QUserInfo.userInfo)
+                        .offset(offset)
+                        .limit(limit)
+                        .fetch()
+            }
+                    .onFailure { ex -> error("Couldn't get users", ex) }
+                    .getOrElse { listOf() }
         }
-                .onFailure { ex -> error("Couldn't get users", ex) }
-                .getOrElse { listOf() }
     }
-
 
 }
