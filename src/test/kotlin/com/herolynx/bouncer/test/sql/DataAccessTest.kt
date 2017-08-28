@@ -25,6 +25,13 @@ interface DataAccessTest<T> : InMemoryDbTest {
 
     fun v2(v1: T): T
 
+    fun givenV1IsCreated(): T {
+        //GIVEN sample entity
+        val v1 = v1()
+        //AND entity is created
+        return repoFactory!!.transactional { r -> r.save(v1).get() }.get()
+    }
+
     @Test
     fun shouldCreateEntity() {
         //GIVEN sample entity
@@ -42,10 +49,7 @@ interface DataAccessTest<T> : InMemoryDbTest {
 
     @Test
     fun shouldUpdateEntity() {
-        //GIVEN sample entity
-        val v1 = v1()
-        //AND entity is created
-        repoFactory!!.transactional { r -> r.save(v1).get() }.get()
+        val v1 = givenV1IsCreated()
         //AND entity has been changed
         val v2 = v2(v1)
 
@@ -61,10 +65,7 @@ interface DataAccessTest<T> : InMemoryDbTest {
 
     @Test
     fun shouldDeleteEntity() {
-        //GIVEN sample entity
-        val v1 = v1()
-        //AND entity is created
-        val dbV1 = repoFactory!!.transactional { r -> r.save(v1).get() }.get()
+        val v1 = givenV1IsCreated()
 
         //WHEN deleting
         repoFactory!!.transactional { r -> r.delete(entityClass(), idOf(v1)).get() }.get()
