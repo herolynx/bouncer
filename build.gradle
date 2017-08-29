@@ -26,6 +26,8 @@ apply {
     plugin("org.springframework.boot")
     plugin("application")
     plugin("docker")
+    plugin("groovy")
+    plugin("idea")
 }
 
 apply from: 'gradle/querydsl.gradle'
@@ -66,6 +68,12 @@ dependencies {
     //tests
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("com.h2database:h2:1.4.196")
+    //spock for BDD
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4'
+    testCompile 'org.objenesis:objenesis:2.6'
+    testCompile 'cglib:cglib-nodep:3.2.4'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.7'
 }
 
 docker {
@@ -82,5 +90,12 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "$targetCompatibility"
+    }
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
     }
 }
